@@ -1,0 +1,91 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My Blog"
+theme = "ezhil"
+
+copyright = "© copyright notice"
+
+# Enable syntax highlighting.
+pygmentsstyle = "solarized-dark"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+# Your Google analytics code.
+googleAnalytics = "UA-123-45"
+
+# Number of posts to show in recent posts list (Optional). Defaults to 10.
+paginate = 10
+
+[params]
+    # Blog subtitle which appears below blog title. Supports markdown.
+    subtitle = "subtitle"
+
+    # Content types which are included in home page recent posts list.
+    mainSections = ["posts"]
+
+    # Enable comments. Default: True
+    enableComments = true
+    # The repo whose issues are used for comments. see https://utteranc.es/
+    commentsRepo = "yzhang1918/blog_comments"
+
+    # If social media links are enabled then enable this to fetch icons from CDN instead of hosted on your site.
+    featherIconsCDN = true
+
+    # Specify favicon (icons/i.png maps to static/icons/i.png). No favicon if not defined.
+    favicon = "icons/i.png"
+
+    # Custom CSS added to default styles. Files added to `static` folder is copied as it is to
+    # root by Hugo. For example if you have custom CSS file under `static/css/custom.css` then
+    # you can specify custom css path as `css/custom.css`.
+    # customCSS = "css/custom.css"
+
+    # Custom list of Javascript files to load. Just like custom CSS you can place js files under
+    # `static/js` folder and specify path here as `js/script-name.js`. You can also specify full url,
+    # for example you may want to include external JS library.
+    # customJS = ["js/abc.js", "js/xyz.js", "https://code.jquery.com/jquery-3.4.1.js"]
+
+    [params.math]
+        enable = true
+        use = "katex"  # katex or mathjax
+
+# Main menu which appears below site header.
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 5
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
+
+[[menu.main]]
+name = "Categories"
+url = "/categories"
+weight = 3
+
+# Social media links which shows up on site header.
+# Uses feather icons for icons. You can [search icon names from here](https://feathericons.com/).
+[[params.social]]
+name = "Github"
+icon = "github"
+url = "https://github.com/gohugoio/hugo"
+
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/gohugoio"
+
+[[params.social]]
+name = "RSS"
+icon = "rss"
+url = "/index.xml"
+
+[taxonomies]
+   tag = "tags"
+   category = "categories"

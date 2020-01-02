@@ -2,12 +2,25 @@
 
 Clean and minimal personal blog and portfolio theme for Hugo.
 
+## Modifications in this fork
+
+* Remove disqus
+* Remove dark mode
+* Add [utteranc.es](https://utteranc.es/) for commenting
+* Add math support from [notepadium](https://themes.gohugo.io/hugo-notepadium/)
+* Modify several pages
+* Two short codes
+    - Insert `{{< toc >}}` in the markdown file to add the table of contents.
+    - Insert `{{< latex/display>}} latex code here {{< /latex/display >}}` to use katex/mathjax without escaping `-`, `/`, etc..
+
+Please check the example .toml file for configuration.
+
+
+
 ## Demo
 
 [View demo](https://ezhil-hugo.netlify.com/)
 
-![Screenshot](images/screenshot-light.png "Ezhil light theme")
-![Screenshot](images/screenshot-dark.png "Ezhil dark theme")
 
 ## Features
 
