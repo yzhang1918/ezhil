@@ -26,7 +26,7 @@ paginate = 10
     # Enable comments. Default: True
     enableComments = true
     # The repo whose issues are used for comments. see https://utteranc.es/
-    commentsRepo = "yzhang1918/blog_comments"
+    commentsRepo = "yourgit/comments_repo"
 
     # If social media links are enabled then enable this to fetch icons from CDN instead of hosted on your site.
     featherIconsCDN = true
