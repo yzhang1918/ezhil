@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 {{ partial "header.html" . }}
+{{ if or .Params.math .Site.Params.math }}
+{{ partial "math.html" . }}
+{{ end }}
 <body>
 	<div class="container wrapper post">
 		{{ partial "head.html" . }}
@@ -10,44 +13,45 @@
 			<div class="meta">Posted at &mdash; {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
 		</div>
 
-		<div class="markdown">
-			{{ .Content }}
-		</div>
-
 		<div class="post-tags">
 			{{ if ne .Type "page" }}
-				{{ if gt .Params.tags 0 }}
-					<nav class="nav tags">
-							<ul class="flat">
-								{{ range .Params.tags }}
-								<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-								{{ end }}
-							</ul>
-					</nav>
+				{{ if or (gt .Params.tags 0) (gt .Params.categories 0) }}
+				<nav class="nav">
+						<ul class="flat">
+							{{ range .Params.tags }}
+							<li class="tags"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+							{{end}}
+							{{ range .Params.categories }}
+							<li class="categories"><a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+							{{ end }}
+						</ul>
+				</nav>
 				{{ end }}
 			{{ end }}
 		</div>
-		{{- $.Scratch.Set "isDisqus" true -}}
 
-		<!-- Disable if content type is excluded in config -->
-		{{- if and (isset .Params "type") (in .Site.Params.disableDisqusTypes .Params.type) -}}
-		{{- $.Scratch.Set "isDisqus" false -}}
+		<div class="markdown">
+			{{ .Content }}
+		</div>
+		
+		{{- $.Scratch.Set "comments" true -}}
+
+		{{- if and (isset .Site.Params "enablecomments") (not .Site.Params.enableComments)}}
+		{{- $.Scratch.Set "comments" false -}}
 		{{- end -}}
 
-		<!-- Check if content has flag to enable/disable disqus explicitly -->
-		{{- if and (isset .Params "disqus") (eq .Params.disqus false) -}}
-		{{- $.Scratch.Set "isDisqus" false -}}
-		{{- else if and (isset .Params "disqus") (eq .Params.disqus true) -}}
-		{{- $.Scratch.Set "isDisqus" true -}}
+		{{- if isset .Params "enablecomments" -}}
+		{{- $.Scratch.Set "comments" .Params.enablecomments -}}
 		{{- end -}}
 
-		<!-- Check if disqus short name is given -->
-		{{ if not .Site.DisqusShortname }}
-		{{- $.Scratch.Set "isDisqus" false -}}
+		{{ if not .Site.Params.commentsRepo }}
+		{{- $.Scratch.Set "comments" false -}}
 		{{ end }}
-
-		{{- if eq ($.Scratch.Get "isDisqus") true -}}
-		{{- partial "disqus.html" . -}}
+		
+		{{- if $.Scratch.Get "comments" -}}
+		{{- partial "comments.html" . -}}
+		{{- else -}}
+		{{- "<!-- Comments are disabled on this page. -->" | safeHTML -}}
 		{{- end -}}
 	</div>
 	{{ partial "footer.html" . }}

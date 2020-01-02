@@ -267,7 +267,7 @@ ul {
 }
 
 .recent-posts .posts .post {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .recent-posts .posts .post .meta,
@@ -315,6 +315,18 @@ ul {
     border-radius: 4px;
     padding: 0px 6px;
     color: #a00;
+    line-height: 20px;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0 1px;
+}
+
+.post-tags .categories a {
+    display: inline-block;
+    border: 1px solid darkgreen;
+    border-radius: 4px;
+    padding: 0px 6px;
+    color: darkgreen;
     line-height: 20px;
     font-size: 12px;
     text-decoration: none;
